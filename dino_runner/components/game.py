@@ -22,7 +22,7 @@ class Game:
     self.x_pos_bg = 0
     self.y_pos_bg = 380
     self.player = Dinosaur()
-    self.obstacle_manager = ObstacleManager(self.player)
+    self.obstacle_manager = ObstacleManager()
     self.power_up_manager = PowerUpManager()
 
   def execute(self):
@@ -95,7 +95,7 @@ class Game:
   def draw_power_up_time(self):
     if self.player.has_power_up:
       time_to_show = round((self.player.power_up_time - pygame.time.get_ticks()) / 1000, 2)
-      if time_to_show <= 0:
+      if time_to_show >= 0:
         draw_message_component(
           f"{self.player.type.capitalize()} disponivel por {time_to_show} segundos",
           self.screen,
