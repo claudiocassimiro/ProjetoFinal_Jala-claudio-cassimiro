@@ -1,6 +1,6 @@
 import pygame
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, CLOUD
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.powerups.power_up_manager import PowerUpManager
@@ -20,6 +20,8 @@ class Game:
     self.game_speed = 20
     self.x_pos_bg = 0
     self.y_pos_bg = 380
+    self.x_pos_cloud = 0
+    self.y_pos_cloud = 30
     self.player = Dinosaur()
     self.obstacle_manager = ObstacleManager()
     self.power_up_manager = PowerUpManager()
@@ -67,6 +69,7 @@ class Game:
     self.screen.fill((255, 255, 255)) # altera a cor de fundo do game
     self.draw_background()
     self.player.draw(self.screen)
+    self.draw_cloud()
     self.obstacle_manager.draw(self.screen)
     self.draw_score()
     self.draw_power_up_time()
@@ -105,6 +108,14 @@ class Game:
       else:
         self.player.has_power_up = False
         self.player.type = DEFAULT_TYPE
+  
+  def draw_cloud(self):
+      image_width = CLOUD.get_width()
+      self.screen.blit(CLOUD, (image_width + self.x_pos_cloud, self.y_pos_cloud))
+      if self.x_pos_cloud <= -image_width:
+          self.screen.blit(CLOUD, (image_width + self.x_pos_cloud, self.y_pos_cloud))
+          self.x_pos_cloud = 1000
+      self.x_pos_cloud -= self.game_speed
 
   def handle_events_on_menu(self):
     for event in pygame.event.get():
