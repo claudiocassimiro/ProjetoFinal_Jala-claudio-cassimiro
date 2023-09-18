@@ -1,7 +1,7 @@
-import random
 import pygame
 from pygame.sprite import Sprite
-from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, HAMMER_TYPE, DUCKING_SHIELD, JUMPING_SHIELD, RUNNING_SHIELD, RUNNING_HAMMER, JUMPING_HAMMER, DUCKING_HAMMER
+from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, HAMMER_TYPE, DUCKING_SHIELD, JUMPING_SHIELD, RUNNING_SHIELD, RUNNING_HAMMER, JUMPING_HAMMER, DUCKING_HAMMER, JUMP_SOUND
+from dino_runner.utils.sound_utils import play_sound_effect
 
 DUCK_IMG = { DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD,  HAMMER_TYPE:  DUCKING_HAMMER }
 JUMP_IMG = { DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD, HAMMER_TYPE: JUMPING_HAMMER  }
@@ -64,6 +64,7 @@ class Dinosaur(Sprite):
     self.step_index += 1
 
   def jump(self):
+    play_sound_effect(JUMP_SOUND)
     self.image = JUMP_IMG[self.type]
     if self.dino_jump:
       self.dino_rect.y -= self.jump_vel * 4
