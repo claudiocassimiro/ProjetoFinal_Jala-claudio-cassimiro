@@ -77,8 +77,9 @@ BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
-EXPLOSION_SOUND = 'dino_runner/assets/sounds/EXPLOSION.wav'
+EXPLOSION_SOUND = 'dino_runner/assets/sounds/EXPLOSION.mp3'
 DEATH_SOUND = 'dino_runner/assets/sounds/DEATH_SONG.mp3'
+JUMP_SOUND = 'dino_runner/assets/sounds/JUMP_SONG.mp3'
 
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = "shield"
